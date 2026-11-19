@@ -26,3 +26,8 @@
 
 ## Runtime Constraints
 - Windows OS, local static file serving, offline/browser direct execution.
+
+
+## Deployment & Repository
+- GitHub: https://github.com/Nyx-abu/studio-tiny-tuko
+- Vercel Production: https://studio-tiny-tuko.vercel.app
