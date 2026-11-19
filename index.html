@@ -640,14 +640,9 @@
               Main roles prioritize Filipino talent. Supporting roles open worldwide. Home studio recording setup required.
             </p>
             <div class="pt-2">
-              <a 
-                href="https://docs.google.com/forms/d/e/1FAIpQLSevxY7fZDJsjQagzq0D6nMcygBfE6yjx6qqQEGn97zasIcMLg/viewform" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                class="btn-industrial-outline text-[10px] py-1.5 px-3"
-              >
-                Audition Application Form ↗
-              </a>
+              <span class="inline-block font-mono text-[11px] font-bold uppercase tracking-wider text-ink-faint px-3 py-1.5 border border-taupe-light bg-taupe-light/30">
+                Soon
+              </span>
             </div>
           </div>
 
@@ -661,14 +656,9 @@
               Blending traditional instruments (kulintang, kubing, hegalong, tongatong) with modern orchestral scoring.
             </p>
             <div class="pt-2">
-              <a 
-                href="https://docs.google.com/forms/d/e/1FAIpQLSevxY7fZDJsjQagzq0D6nMcygBfE6yjx6qqQEGn97zasIcMLg/viewform" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                class="btn-industrial-outline text-[10px] py-1.5 px-3"
-              >
-                Artist Application Form ↗
-              </a>
+              <span class="inline-block font-mono text-[11px] font-bold uppercase tracking-wider text-ink-faint px-3 py-1.5 border border-taupe-light bg-taupe-light/30">
+                Soon
+              </span>
             </div>
           </div>
 
@@ -760,11 +750,6 @@
 
         <div class="max-w-7xl mx-auto pt-6 mt-4 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-white/80 drop-shadow">
           <p>&copy; 2026 Studio Tiny Tuko. All rights reserved. Created by Camille Anne Ongjoco.</p>
-          <p class="flex items-center gap-2">
-            <span>✦</span>
-            <span>100% Human-Drawn Craft &bull; Zero Generative AI</span>
-            <span>✦</span>
-          </p>
         </div>
       </div>
 
@@ -786,8 +771,8 @@
       });
     }
 
-    // 2. Bencho UI Synthesized Web Audio Click Sound
-    // Spec from Bencho UI sound engine: { hz: 196, to: 130, ms: 150, gain: 0.07, wave: 'sine', cut: 900 }
+    // 2. High-Fidelity UI Synthesized Web Audio Click Engine
+    // Multi-band acoustic resonance: crisp transient tick for phone/laptop micro-speakers + warm body for headphones
     let benchoAudioCtx = null;
 
     function initBenchoAudio() {
@@ -808,32 +793,46 @@
         if (!benchoAudioCtx || benchoAudioCtx.state !== 'running') return;
 
         const now = benchoAudioCtx.currentTime;
-        const dur = 0.15; // 150ms
 
-        // Oscillator with pitch glide: 196Hz -> 130Hz
-        const osc = benchoAudioCtx.createOscillator();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(196, now);
-        osc.frequency.exponentialRampToValueAtTime(130, now + dur);
+        // Layer 1: Crisp Mechanical Transient Snap (1700Hz -> 500Hz)
+        // Vibrate smartphone and laptop micro-speaker cones at their 1kHz-2kHz acoustic sweet spot
+        const snapOsc = benchoAudioCtx.createOscillator();
+        const snapGain = benchoAudioCtx.createGain();
+        snapOsc.type = 'triangle';
+        snapOsc.frequency.setValueAtTime(1700, now);
+        snapOsc.frequency.exponentialRampToValueAtTime(500, now + 0.024);
 
-        // Lowpass cutoff filter at 900Hz for warm, tactile acoustic body
-        const filter = benchoAudioCtx.createBiquadFilter();
-        filter.type = 'lowpass';
-        filter.frequency.setValueAtTime(900, now);
+        snapGain.gain.setValueAtTime(0.0001, now);
+        snapGain.gain.linearRampToValueAtTime(0.26, now + 0.002);
+        snapGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.026);
 
-        // Fast snappy attack (4ms) followed by natural exponential decay
-        const gainNode = benchoAudioCtx.createGain();
-        const atk = 0.004;
-        gainNode.gain.setValueAtTime(0.0001, now);
-        gainNode.gain.exponentialRampToValueAtTime(0.07, now + atk);
-        gainNode.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+        snapOsc.connect(snapGain);
+        snapGain.connect(benchoAudioCtx.destination);
+        snapOsc.start(now);
+        snapOsc.stop(now + 0.03);
 
-        osc.connect(filter);
-        filter.connect(gainNode);
-        gainNode.connect(benchoAudioCtx.destination);
+        // Layer 2: Resonant Body Thump (360Hz -> 180Hz)
+        // Provides organic acoustic weight and roundness for headphones and desktop monitors
+        const bodyOsc = benchoAudioCtx.createOscillator();
+        const bodyGain = benchoAudioCtx.createGain();
+        const bodyFilter = benchoAudioCtx.createBiquadFilter();
 
-        osc.start(now);
-        osc.stop(now + dur);
+        bodyOsc.type = 'sine';
+        bodyOsc.frequency.setValueAtTime(360, now);
+        bodyOsc.frequency.exponentialRampToValueAtTime(180, now + 0.075);
+
+        bodyFilter.type = 'lowpass';
+        bodyFilter.frequency.setValueAtTime(1400, now);
+
+        bodyGain.gain.setValueAtTime(0.0001, now);
+        bodyGain.gain.linearRampToValueAtTime(0.22, now + 0.004);
+        bodyGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.08);
+
+        bodyOsc.connect(bodyFilter);
+        bodyFilter.connect(bodyGain);
+        bodyGain.connect(benchoAudioCtx.destination);
+        bodyOsc.start(now);
+        bodyOsc.stop(now + 0.09);
       } catch (err) {
         // Silent graceful fallback if audio context is blocked
       }
