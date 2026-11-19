@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio Tiny Tuko &bull; SiniGang Show Bible &amp; Production Hub</title>
+  <meta name="description" content="Official Show Bible and Production Hub for SiniGang, an independent animated series by Studio Tiny Tuko celebrating Filipino mythology, martial arts and found family.">
+
+  <!-- Favicon and App Icons (Pixel-perfect extracted Tokay Gecko, zero border clipping) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="Assets/upscaled/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="Assets/upscaled/favicon-64x64.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="Assets/upscaled/apple-touch-icon.png">
+  <link rel="shortcut icon" href="favicon.ico">
+
+  <!-- Google Fonts: Rubik (Matched directly from studiotinytuko.carrd.co), JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Rubik:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            canvas: '#FCFCFC',
+            ink: '#1E1B18',
+            'ink-muted': '#544E47',
+            'ink-faint': '#8C8377',
+            tamarind: '#E88D2A',
+            'tamarind-dark': '#C97216',
+            'tamarind-light': '#FFF5E8',
+            terracotta: '#C85A32',
+            ochre: '#FEBC5B',
+            kangkong: '#4E735B',
+            'kangkong-light': '#F0F6F2',
+            taupe: '#D6CBC1',
+            'taupe-light': '#EDE6DE',
+          },
+          fontFamily: {
+            rubik: ['Rubik', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Strict #FCFCFC Canvas & Architectural Craft */
+    body {
+      background-color: #FCFCFC;
+      color: #1E1B18;
+      font-family: 'Rubik', sans-serif;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Staggered letter hover micro-animation (inspired by abdurraheem-portfolio) */
+    .stagger-link .char {
+      display: inline-block;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease;
+    }
+    .stagger-link:hover .char {
+      transform: translateY(-2px);
+      color: #E88D2A;
+    }
+
+    /* Tactile Industrial Button (Inspired by abdurraheem-portfolio IndustrialButton) */
+    .btn-industrial {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 0.625rem 1.25rem;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      outline: none;
+      user-select: none;
+      border: 1px solid #1E1B18;
+      background: #1E1B18;
+      color: #FCFCFC;
+      border-radius: 2px;
+    }
+    .btn-industrial:hover {
+      background: #E88D2A;
+      border-color: #E88D2A;
+      color: #FCFCFC;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(232, 141, 42, 0.25);
+    }
+    .btn-industrial:active {
+      transform: translateY(0);
+      scale: 0.98;
+    }
+
+    .btn-industrial-outline {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 0.625rem 1.25rem;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      outline: none;
+      user-select: none;
+      border: 1px solid #D6CBC1;
+      background: transparent;
+      color: #1E1B18;
+      border-radius: 2px;
+    }
+    .btn-industrial-outline:hover {
+      border-color: #1E1B18;
+      background: #1E1B18;
+      color: #FCFCFC;
+      transform: translateY(-1px);
+    }
+
+    /* Stable artwork plate (Museum-Grade, No bouncing) */
+    .art-plate {
+      transition: opacity 0.25s ease;
+    }
+    .art-plate:hover {
+      opacity: 0.96;
+    }
+
+    /* 1:1 Authentic Filipino Inabel Woven Ribbon Motif (Extracted from Studio Poster) */
+    .woven-ribbon-band {
+      background-image: url('Assets/upscaled/authentic_woven_ribbon_tile.png');
+      background-repeat: repeat-x;
+      background-position: center;
+      background-size: auto 34px;
+      height: 34px;
+      width: 100%;
+    }
+
+    .woven-ribbon-slim {
+      background-image: url('Assets/upscaled/authentic_woven_ribbon_tile.png');
+      background-repeat: repeat-x;
+      background-position: center;
+      background-size: auto 20px;
+      height: 20px;
+      width: 100%;
+    }
+
+    /* Minimal custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FCFCFC;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D6CBC1;
+      border-radius: 2px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #E88D2A;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-tamarind selection:text-white">
+
+  <!-- TOP AUTHENTIC 1:1 WOVEN RIBBON TRIM -->
+  <div class="woven-ribbon-slim"></div>
+
+  <!-- ARCHITECTURAL FULL-WIDTH HEADER (No Pills, Prominent Studio Logo, Words Speak) -->
+  <header class="sticky top-0 z-40 w-full bg-[#FCFCFC]/95 backdrop-blur-md border-b border-taupe-light">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 h-20 sm:h-24 flex items-center justify-between">
+      
+      <!-- Studio Tiny Tuko Official Brand Logo (Visible, High-Resolution, Perfectly Scaled) -->
+      <a href="#" class="flex items-center gap-3 group focus:outline-none py-2" title="Studio Tiny Tuko Home">
+        <img 
+          src="Assets/upscaled/studio_tiny_tuko_brand_logo_tight.png?v=artistic_final" 
+          alt="Studio Tiny Tuko Official Logo" 
+          class="h-12 sm:h-14 md:h-16 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+        >
+      </a>
+
+      <!-- Desktop Navigation Links: LET WORDS SPEAK -->
+      <nav class="hidden md:flex items-center gap-8 lg:gap-10 font-rubik text-xs sm:text-sm font-bold tracking-wider uppercase text-ink-muted">
+        <a href="#show" class="stagger-link py-2 transition-colors">
+          <span class="char" style="transition-delay:0ms">T</span><span class="char" style="transition-delay:15ms">h</span><span class="char" style="transition-delay:30ms">e</span> <span class="char" style="transition-delay:45ms">S</span><span class="char" style="transition-delay:60ms">h</span><span class="char" style="transition-delay:75ms">o</span><span class="char" style="transition-delay:90ms">w</span>
+        </a>
+        <a href="#characters" class="stagger-link py-2 transition-colors">
+          <span class="char" style="transition-delay:0ms">C</span><span class="char" style="transition-delay:15ms">h</span><span class="char" style="transition-delay:30ms">a</span><span class="char" style="transition-delay:45ms">r</span><span class="char" style="transition-delay:60ms">a</span><span class="char" style="transition-delay:75ms">c</span><span class="char" style="transition-delay:90ms">t</span><span class="char" style="transition-delay:105ms">e</span><span class="char" style="transition-delay:120ms">r</span><span class="char" style="transition-delay:135ms">s</span>
+        </a>
+        <a href="#sketchbook" class="stagger-link py-2 transition-colors">
+          <span class="char" style="transition-delay:0ms">S</span><span class="char" style="transition-delay:15ms">k</span><span class="char" style="transition-delay:30ms">e</span><span class="char" style="transition-delay:45ms">t</span><span class="char" style="transition-delay:60ms">c</span><span class="char" style="transition-delay:75ms">h</span><span class="char" style="transition-delay:90ms">b</span><span class="char" style="transition-delay:105ms">o</span><span class="char" style="transition-delay:120ms">o</span><span class="char" style="transition-delay:135ms">k</span>
+        </a>
+        <a href="#crew" class="stagger-link py-2 transition-colors">
+          <span class="char" style="transition-delay:0ms">C</span><span class="char" style="transition-delay:15ms">r</span><span class="char" style="transition-delay:30ms">e</span><span class="char" style="transition-delay:45ms">w</span>
+        </a>
+      </nav>
+
+      <!-- Right Action: Artist Application Link (Direct to Google Form) + Gecko Crest -->
+      <div class="hidden sm:flex items-center gap-4">
+        <a 
+          href="https://docs.google.com/forms/d/e/1FAIpQLSevxY7fZDJsjQagzq0D6nMcygBfE6yjx6qqQEGn97zasIcMLg/viewform" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="btn-industrial"
+        >
+          <span>Artist Application</span>
+          <span class="ml-1.5" aria-hidden="true">&rarr;</span>
+        </a>
+        <a 
+          href="https://studiotinytuko.carrd.co" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="shrink-0 p-1 transition-transform hover:scale-105"
+          title="Studio Tiny Tuko Hub"
+        >
+          <img 
+            src="Assets/upscaled/logo_circle_flat.png?v=artistic_final" 
+            alt="Studio Tokay Gecko Crest" 
+            class="w-9 h-9 object-contain"
+          >
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" type="button" aria-label="Toggle navigation menu" class="md:hidden p-2 text-ink hover:text-tamarind focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path id="hamburgerIcon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-taupe-light bg-[#FCFCFC] px-6 py-5 flex flex-col gap-3 font-rubik font-semibold text-sm text-ink-muted">
+      <a href="#show" class="py-1.5 hover:text-tamarind">The Show</a>
+      <a href="#characters" class="py-1.5 hover:text-tamarind">Characters</a>
+      <a href="#sketchbook" class="py-1.5 hover:text-tamarind">Sketchbook</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSevxY7fZDJsjQagzq0D6nMcygBfE6yjx6qqQEGn97zasIcMLg/viewform" target="_blank" rel="noopener noreferrer" class="py-2 text-tamarind font-bold border-t border-taupe-light mt-1">Artist Application &rarr;</a>
+    </div>
+  </header>
+
+  <!-- MAIN CANVAS (Pure #FCFCFC, Zero Cards, Words & Art Speak) -->
+  <main class="flex-grow">
+
+    <!-- HERO SECTION -->
+    <section id="show" class="relative pt-12 pb-20 md:pt-20 md:pb-32 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          
+          <!-- Left Column: Monumental Words & SiniGang Title Mark (7 Cols) -->
+          <div class="lg:col-span-7 space-y-8">
+            
+            <!-- Better Form Image of SiniGang Title Mark (Clean Transparent PNG from User Reference) -->
+            <div>
+              <img 
+                src="Assets/upscaled/sinigang_logo_extracted.png?v=artistic_final" 
+                alt="SiniGang Official Title Mark" 
+                class="w-full max-w-sm sm:max-w-md h-auto object-contain"
+              >
+            </div>
+
+            <!-- Monumental Headline: LET WORDS SPEAK -->
+            <h1 class="font-rubik text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-ink leading-[0.92]">
+              Filipino mythology<br>
+              <span class="text-tamarind">found family</span><br>
+              and fighting your way out.
+            </h1>
+
+            <!-- Concise Logline (Artistic & Punchy) -->
+            <p class="text-base sm:text-lg text-ink-muted leading-relaxed font-normal max-w-xl">
+              19-year-old Arnis fighter <strong class="text-ink font-bold">Tama</strong> battles in underground prize tournaments outside Manila to pull her grandmother from poverty until ancient mythological spirits drag her into the unseen realm.
+            </p>
+
+            <!-- Director Quote -->
+            <div class="border-l-2 border-tamarind pl-4 py-1 space-y-1">
+              <p class="italic text-sm text-ink-muted leading-relaxed">
+                &ldquo;Each character is like an ingredient in the dish. Together they become something far greater.&rdquo;
+              </p>
+              <span class="block font-mono text-[11px] text-tamarind font-semibold uppercase tracking-wider">
+                Camille Anne Ongjoco &bull; Creator, Director and Character Designer
+              </span>
+            </div>
+
+            <!-- Tactile Action Matrix (Zero Pills) -->
+            <div class="pt-2 flex flex-wrap items-center gap-4 sm:gap-6 font-mono text-xs uppercase tracking-wider">
+              <a href="#characters" class="btn-industrial">
+                <span>Explore Characters</span>
+                <span class="ml-1.5" aria-hidden="true">&darr;</span>
+              </a>
+              <a 
+                href="https://docs.google.com/forms/d/e/1FAIpQLSevxY7fZDJsjQagzq0D6nMcygBfE6yjx6qqQEGn97zasIcMLg/viewform" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="btn-industrial-outline"
+              >
+                <span>Artist Application</span>
+                <span class="ml-1.5" aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Right Column: Hand-Drawn Lead Character (5 Cols, Zero Cards) -->
+          <div class="lg:col-span-5 flex flex-col items-center justify-center">
+            <div class="relative w-full max-w-md">
+              <img 
+                src="Assets/upscaled/tama_cutout_transparent.png?v=v5" 
+                alt="Tama Hand-Drawn Character Key" 
+                class="w-full h-auto object-contain drop-shadow-xl select-none"
+              >
+              <div class="mt-4 text-center">
+                <span class="font-mono text-xs text-ink-faint uppercase tracking-wider block">
+                  Tama &bull; Lead Fighter
+                </span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- AUTHENTIC 1:1 WOVEN RIBBON DIVIDER -->
+    <div class="woven-ribbon-band my-8"></div>
+
+    <!-- CHARACTERS AND CAST (Direct Visual Showcase, Zero Tabs, Zero Boxes, Zero Bullet Points) -->
+    <section id="characters" class="py-16 md:py-24">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+
+        <!-- Section Header -->
+        <div class="mb-16">
+          <span class="font-mono text-xs uppercase tracking-widest text-tamarind font-bold block mb-1">
+            ✦ Cast &bull; Visual Development ✦
+          </span>
+          <h2 class="font-rubik text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-ink">
+            The Ingredients
+          </h2>
+        </div>
+
+        <!-- 1. TAMA EXTRACTED ARTWORK ROW -->
+        <div class="mb-24 space-y-8">
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-taupe-light pb-4">
+            <div>
+              <span class="font-mono text-xs uppercase tracking-widest text-tamarind font-bold">01 &bull; Lead Fighter</span>
+              <h3 class="font-rubik text-3xl sm:text-4xl font-black text-ink mt-1">Tama</h3>
+              <p class="font-mono text-xs text-terracotta uppercase tracking-wider font-semibold mt-1">
+                Tamarind &bull; Sour, unyielding, resilient
+              </p>
+            </div>
+            <p class="text-sm text-ink-muted max-w-lg font-normal">
+              A disciplined Arnis fighter competing in underground prize tournaments to pull her grandmother from poverty. Skeptical of folk superstition until ancient spirits drag her into their unseen war.
+            </p>
+          </div>
+
+          <!-- Direct Hand-Drawn Character Turnarounds Side-by-Side (Extracted, Zero Backgrounds, Zero Fake Names) -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 items-end justify-items-center pt-6">
+            
+            <!-- Pose 03: Tan Crop & Braid Exploration -->
+            <div class="flex flex-col items-center">
+              <img 
+                src="Assets/upscaled/tama_pose3_extracted.png?v=v5" 
+                alt="Tama Model Sheet Pose 03" 
+                class="h-[360px] sm:h-[420px] lg:h-[460px] w-auto object-contain select-none"
+              >
+              <span class="font-mono text-[11px] text-ink-faint uppercase tracking-wider mt-4">
+                Model Sheet &bull; Pose 03
+              </span>
+            </div>
+
+            <!-- Pose 04: Sleeveless Mockneck & Baggy Pants -->
+            <div class="flex flex-col items-center">
+              <img 
+                src="Assets/upscaled/tama_pose4_extracted.png?v=v5" 
+                alt="Tama Model Sheet Pose 04" 
+                class="h-[360px] sm:h-[420px] lg:h-[460px] w-auto object-contain select-none"
+              >
+              <span class="font-mono text-[11px] text-ink-faint uppercase tracking-wider mt-4">
+                Model Sheet &bull; Pose 04
+              </span>
+            </div>
+
+            <!-- Pose 05: Signature Athletic Top & Wraps -->
+            <div class="flex flex-col items-center">
+              <img 
+                src="Assets/upscaled/tama_pose5_extracted.png?v=v5" 
+                alt="Tama Model Sheet Pose 05" 
+                class="h-[360px] sm:h-[420px] lg:h-[460px] w-auto object-contain select-none"
+              >
+              <span class="font-mono text-[11px] text-ink-faint uppercase tracking-wider mt-4">
+                Model Sheet &bull; Pose 05
+              </span>
+            </div>
+
+            <!-- Pose 06: Maroon Hoodie Exploration -->
+            <div class="flex flex-col items-center">
+              <img 
+                src="Assets/upscaled/tama_pose6_extracted.png?v=v5" 
+                alt="Tama Model Sheet Pose 06" 
+                class="h-[360px] sm:h-[420px] lg:h-[460px] w-auto object-contain select-none"
+              >
+              <span class="font-mono text-[11px] text-ink-faint uppercase tracking-wider mt-4">
+                Model Sheet &bull; Pose 06
+              </span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 2. KIKO & CAST EXTRACTED ROW -->
+        <div class="space-y-8">
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-taupe-light pb-4">
+            <div>
+              <span class="font-mono text-xs uppercase tracking-widest text-kangkong font-bold">02 &bull; Support &bull; Companion</span>
+              <h3 class="font-rubik text-3xl sm:text-4xl font-black text-ink mt-1">Kiko and The Cast</h3>
+              <p class="font-mono text-xs text-kangkong uppercase tracking-wider font-semibold mt-1">
+                Kangkong &bull; Grounded, observant, healing
+              </p>
+            </div>
+            <p class="text-sm text-ink-muted max-w-lg font-normal">
+              Tama's childhood anchor. Observant, resourceful and deeply attuned to folklore omens and native remedies that balance Tama's fiery fighting pride.
+            </p>
+          </div>
+
+          <!-- Direct Extracted Figures (Zero Boxes, Zero Slideshows) -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center justify-items-center pt-6">
+            
+            <!-- Kiko Extracted Turnaround -->
+            <div class="flex flex-col items-center">
+              <img 
+                src="Assets/upscaled/kiko_extracted.png?v=v5" 
+                alt="Kiko Model Sheet" 
+                class="h-[360px] sm:h-[420px] lg:h-[460px] w-auto object-contain select-none"
+              >
+              <span class="font-mono text-[11px] text-ink-faint uppercase tracking-wider mt-4">
+                Model Sheet &bull; Kiko
+              </span>
+            </div>
+
+            <!-- Additional Character Turnaround -->
+            <div class="flex flex-col items-center">
+              <img 
+                src="Assets/upscaled/other_character_extracted.png?v=v5" 
+                alt="Cast Model Sheet" 
+                class="h-[360px] sm:h-[420px] lg:h-[460px] w-auto object-contain select-none"
+              >
+              <span class="font-mono text-[11px] text-ink-faint uppercase tracking-wider mt-4">
+                Model Sheet &bull; Cast Key
+              </span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- AUTHENTIC 1:1 WOVEN RIBBON DIVIDER -->
+    <div class="woven-ribbon-band my-8"></div>
+
+    <!-- SKETCHBOOK AND VIS-DEV WALL (Pure Visual Archive, Zero Letterbox Bars) -->
+    <section id="sketchbook" class="py-16 md:py-24">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+
+        <div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <span class="font-mono text-xs uppercase tracking-widest text-tamarind font-bold block mb-1">
+              ✦ Pre-Production Archive ✦
+            </span>
+            <h2 class="font-rubik text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-ink">
+              The Sketchbook
+            </h2>
+          </div>
+          <p class="text-xs font-mono text-ink-faint max-w-md">
+            Hand-drawn concept keys, village environments by cloudyning and creature design studies by mikkusushi.
+          </p>
+        </div>
+
+        <!-- BENTO GRID VIS-DEV ARCHIVE (Asymmetric Layout, Zero Cards, Zero Fake Names) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 auto-rows-[240px] sm:auto-rows-[280px] lg:auto-rows-[310px]">
+          
+          <!-- Bento Tile 1: Primary Mountain Village (cloudyning) - Wide 2-Column Span -->
+          <div class="md:col-span-2 md:row-span-1 relative overflow-hidden bg-[#FAF6F0] group">
+            <img 
+              src="Assets/upscaled/cloudyning_primarylandscape_nobars.jpg?v=v5" 
+              alt="Environment Development by cloudyning" 
+              class="w-full h-full object-cover select-none"
+            >
+            <div class="absolute bottom-3 left-3 px-2.5 py-1 bg-[#FCFCFC]/90 backdrop-blur-sm text-[10px] font-mono text-ink uppercase tracking-wider font-semibold border border-taupe-light/60">
+              cloudyning
+            </div>
+          </div>
+
+          <!-- Bento Tile 2: Creature Exploration 2 (mikkusushi) - Tall 2-Row Span -->
+          <div class="md:col-span-1 md:row-span-2 relative overflow-hidden bg-[#FAF6F0] group">
+            <img 
+              src="Assets/upscaled/mikkusushi_work2.jpg?v=v5" 
+              alt="Creature Exploration by mikkusushi" 
+              class="w-full h-full object-cover select-none"
+            >
+            <div class="absolute bottom-3 left-3 px-2.5 py-1 bg-[#FCFCFC]/90 backdrop-blur-sm text-[10px] font-mono text-ink uppercase tracking-wider font-semibold border border-taupe-light/60">
+              mikkusushi
+            </div>
+          </div>
+
+          <!-- Bento Tile 3: Creature Line Study (mikkusushi) - 1 Column -->
+          <div class="md:col-span-1 md:row-span-1 relative overflow-hidden bg-[#FAF6F0] group">
+            <img 
+              src="Assets/upscaled/mikkusushi_work_nobars.jpg?v=v5" 
+              alt="Creature Study by mikkusushi" 
+              class="w-full h-full object-cover select-none"
+            >
+            <div class="absolute bottom-3 left-3 px-2.5 py-1 bg-[#FCFCFC]/90 backdrop-blur-sm text-[10px] font-mono text-ink uppercase tracking-wider font-semibold border border-taupe-light/60">
+              mikkusushi
+            </div>
+          </div>
+
+          <!-- Bento Tile 4: Forest Trail (cloudyning) - 1 Column -->
+          <div class="md:col-span-1 md:row-span-1 relative overflow-hidden bg-[#FAF6F0] group">
+            <img 
+              src="Assets/upscaled/cloudyning_landscape_nobars.jpg?v=v5" 
+              alt="Environment Development by cloudyning" 
+              class="w-full h-full object-cover select-none"
+            >
+            <div class="absolute bottom-3 left-3 px-2.5 py-1 bg-[#FCFCFC]/90 backdrop-blur-sm text-[10px] font-mono text-ink uppercase tracking-wider font-semibold border border-taupe-light/60">
+              cloudyning
+            </div>
+          </div>
+
+          <!-- Bento Tile 5: Village Road (cloudyning) - 1 Column -->
+          <div class="md:col-span-1 md:row-span-1 relative overflow-hidden bg-[#FAF6F0] group">
+            <img 
+              src="Assets/upscaled/cloudyning_landscape2_nobars.jpg?v=v5" 
+              alt="Environment Development by cloudyning" 
+              class="w-full h-full object-cover select-none"
+            >
+            <div class="absolute bottom-3 left-3 px-2.5 py-1 bg-[#FCFCFC]/90 backdrop-blur-sm text-[10px] font-mono text-ink uppercase tracking-wider font-semibold border border-taupe-light/60">
+              cloudyning
+            </div>
+          </div>
+
+          <!-- Bento Tile 6: Creature Study 3 (mikkusushi) - Wide 2-Column Span -->
+          <div class="md:col-span-2 md:row-span-1 relative overflow-hidden bg-[#FAF6F0] group">
+            <img 
+              src="Assets/upscaled/mikkusushi_work3_nobars.jpg?v=v5" 
+              alt="Creature Exploration by mikkusushi" 
+              class="w-full h-full object-cover select-none"
+            >
+            <div class="absolute bottom-3 left-3 px-2.5 py-1 bg-[#FCFCFC]/90 backdrop-blur-sm text-[10px] font-mono text-ink uppercase tracking-wider font-semibold border border-taupe-light/60">
+              mikkusushi
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- AUTHENTIC 1:1 WOVEN RIBBON DIVIDER -->
+    <div class="woven-ribbon-band my-8"></div>
+
+    <!-- STUDIO COMMITMENT: ANTI-AI MANIFESTO (Pure Studio Stance, No Filler) -->
+    <section class="py-16 md:py-24">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 text-center space-y-6">
+        
+        <span class="font-mono text-xs uppercase tracking-widest text-tamarind font-bold block">
+          ✦ Studio Tiny Tuko Commitment ✦
+        </span>
+
+        <h2 class="font-rubik text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-ink max-w-4xl mx-auto leading-[0.95]">
+          100% Human Craft.<br>
+          <span class="text-tamarind">Zero Generative AI.</span>
+        </h2>
+
+        <p class="text-base sm:text-lg text-ink-muted max-w-2xl mx-auto leading-relaxed font-normal">
+          Every line, turnaround, expression and background is drawn by human artists. Never redrawing, replacing or scraping artists' work. Independent animation built through collective human talent.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- AUTHENTIC 1:1 WOVEN RIBBON DIVIDER -->
+    <div class="woven-ribbon-band my-8"></div>
+
+    <!-- OPEN CREW & COMMUNITY HUB -->
+    <section id="crew" class="py-16 md:py-24">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+
+        <div class="mb-12">
+          <span class="font-mono text-xs uppercase tracking-widest text-tamarind font-bold block mb-1">
+            ✦ Open Recruitment &bull; Submissions ✦
+          </span>
+          <h2 class="font-rubik text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-ink">
+            Join the Crew
+          </h2>
+          <p class="text-xs sm:text-sm text-ink-muted mt-2 max-w-xl">
+            Studio Tiny Tuko is building an independent team of animators, voice talent and artists who believe in human-drawn storytelling.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          
+          <div class="space-y-3 border-t-2 border-tamarind pt-4">
+            <div class="flex items-center justify-between text-xs font-mono">
+              <span class="font-bold text-tamarind">VOICE CAST</span>
+              <span class="text-ink-faint">Open Call</span>
+            </div>
+            <h4 class="font-rubik font-bold text-lg text-ink">Main &amp; Supporting Talent</h4>
+            <p class="text-xs text-ink-muted leading-relaxed">
+              Main roles prioritize Filipino talent. Supporting roles open worldwide. Home studio recording setup required.
+            </p>
+            <div class="pt-2">
+              <a 
+                href="https://docs.google.com/forms/d/e/1FAIpQLSevxY7fZDJsjQagzq0D6nMcygBfE6yjx6qqQEGn97zasIcMLg/viewform" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="btn-industrial-outline text-[10px] py-1.5 px-3"
+              >
+                Audition Application Form ↗
+              </a>
+            </div>
+          </div>
+
+          <div class="space-y-3 border-t-2 border-terracotta pt-4">
+            <div class="flex items-center justify-between text-xs font-mono">
+              <span class="font-bold text-terracotta">MUSIC</span>
+              <span class="text-terracotta font-semibold">Priority</span>
+            </div>
+            <h4 class="font-rubik font-bold text-lg text-ink">Series Composer</h4>
+            <p class="text-xs text-ink-muted leading-relaxed">
+              Blending traditional instruments (kulintang, kubing, hegalong, tongatong) with modern orchestral scoring.
+            </p>
+            <div class="pt-2">
+              <a 
+                href="https://docs.google.com/forms/d/e/1FAIpQLSevxY7fZDJsjQagzq0D6nMcygBfE6yjx6qqQEGn97zasIcMLg/viewform" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="btn-industrial-outline text-[10px] py-1.5 px-3"
+              >
+                Artist Application Form ↗
+              </a>
+            </div>
+          </div>
+
+          <div class="space-y-3 border-t-2 border-kangkong pt-4">
+            <div class="flex items-center justify-between text-xs font-mono">
+              <span class="font-bold text-kangkong">ART &amp; ANIMATION</span>
+              <span class="text-ink-faint">Animatic Stage</span>
+            </div>
+            <h4 class="font-rubik font-bold text-lg text-ink">Animators &amp; Painters</h4>
+            <p class="text-xs text-ink-muted leading-relaxed">
+              Character animators, cleanup artists and background painters who appreciate expressive line art.
+            </p>
+            <div class="pt-2">
+              <a 
+                href="https://docs.google.com/forms/d/e/1FAIpQLSevxY7fZDJsjQagzq0D6nMcygBfE6yjx6qqQEGn97zasIcMLg/viewform" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="btn-industrial-outline text-[10px] py-1.5 px-3"
+              >
+                Artist Application Form ↗
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- The Tuko Tree Discord & Community -->
+        <div class="pt-8 border-t border-taupe/40 flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div class="space-y-2">
+            <h3 class="font-rubik font-black text-2xl text-ink">The Tuko Tree Discord is Open</h3>
+            <p class="text-xs sm:text-sm text-ink-muted max-w-xl">
+              Discuss folklore, share fan art and follow behind-the-scenes production updates directly with director Camille Anne.
+            </p>
+          </div>
+          <div class="flex items-center gap-4 flex-wrap">
+            <a href="https://discord.com/invite/c75NTvVK3j" target="_blank" rel="noopener noreferrer" class="btn-industrial">
+              Join Discord Community ↗
+            </a>
+            <a href="https://studiotinytuko.carrd.co" target="_blank" rel="noopener noreferrer" class="btn-industrial-outline">
+              Studio Carrd Hub ↗
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- LUSH LANDSCAPE FOOTER (Full Bleed, No Black Bars, Pristine Logo) -->
+  <footer class="relative overflow-hidden border-t border-taupe/30">
+    
+    <div class="relative w-full h-[320px] sm:h-[380px] md:h-[440px] overflow-hidden">
+      <img 
+        src="Assets/upscaled/landscape_footer.jpg?v=v5" 
+        alt="Rural Village and Mountains Landscape by cloudyning" 
+        class="w-full h-full object-cover object-bottom select-none"
+      >
+      <!-- Gradient overlay blending from #FCFCFC to landscape and dark ground -->
+      <div class="absolute inset-0 bg-gradient-to-b from-[#FCFCFC] via-transparent to-ink/90"></div>
+
+      <!-- Footer Typography (Crisp Studio Crest, Zero Distortion) -->
+      <div class="absolute bottom-0 inset-x-0 pb-8 pt-16 px-5 sm:px-8 lg:px-12">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-white">
+          
+          <!-- Pristine Studio Emblem & Wordmark (Zero white crescent sliver) -->
+          <div class="flex items-center gap-3">
+            <img 
+              src="Assets/upscaled/logo_circle_flat.png?v=v5" 
+              alt="Studio Tiny Tuko Tokay Gecko Crest" 
+              class="w-10 h-10 object-contain drop-shadow"
+            >
+            <div>
+              <span class="font-rubik font-extrabold text-base tracking-wider uppercase text-white drop-shadow">Studio Tiny Tuko</span>
+              <span class="text-xs font-mono text-white/80 block drop-shadow-sm">Independent Animation Studio</span>
+            </div>
+          </div>
+
+          <!-- Social Links -->
+          <div class="flex items-center gap-7 text-xs font-mono uppercase tracking-wider text-white drop-shadow">
+            <a href="https://instagram.com/studiotinytuko" target="_blank" rel="noopener noreferrer" class="hover:text-ochre transition-colors">Instagram</a>
+            <a href="https://www.youtube.com/@StudioTinyTuko" target="_blank" rel="noopener noreferrer" class="hover:text-ochre transition-colors">YouTube</a>
+            <a href="https://discord.com/invite/c75NTvVK3j" target="_blank" rel="noopener noreferrer" class="hover:text-ochre transition-colors">Discord</a>
+            <a href="https://studiotinytuko.carrd.co" target="_blank" rel="noopener noreferrer" class="hover:text-ochre transition-colors">Carrd</a>
+            <a href="#show" class="hover:text-ochre transition-colors">Top &uarr;</a>
+          </div>
+
+        </div>
+
+        <div class="max-w-7xl mx-auto pt-6 mt-4 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-white/80 drop-shadow">
+          <p>&copy; 2026 Studio Tiny Tuko. All rights reserved. Created by Camille Anne Ongjoco.</p>
+          <p class="flex items-center gap-2">
+            <span>✦</span>
+            <span>100% Human-Drawn Craft &bull; Zero Generative AI</span>
+            <span>✦</span>
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </footer>
+
+  <!-- MINIMAL MOBILE MENU TOGGLE & BENCHO UI SYNTHESIZED CLICK SOUND -->
+  <script>
+    // 1. Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+      mobileMenu.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+      });
+    }
+
+    // 2. Bencho UI Synthesized Web Audio Click Sound
+    // Spec from Bencho UI sound engine: { hz: 196, to: 130, ms: 150, gain: 0.07, wave: 'sine', cut: 900 }
+    let benchoAudioCtx = null;
+
+    function initBenchoAudio() {
+      if (!benchoAudioCtx) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioContextClass) {
+          benchoAudioCtx = new AudioContextClass();
+        }
+      }
+      if (benchoAudioCtx && benchoAudioCtx.state === 'suspended') {
+        benchoAudioCtx.resume();
+      }
+    }
+
+    function playBenchoClick() {
+      try {
+        initBenchoAudio();
+        if (!benchoAudioCtx || benchoAudioCtx.state !== 'running') return;
+
+        const now = benchoAudioCtx.currentTime;
+        const dur = 0.15; // 150ms
+
+        // Oscillator with pitch glide: 196Hz -> 130Hz
+        const osc = benchoAudioCtx.createOscillator();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(196, now);
+        osc.frequency.exponentialRampToValueAtTime(130, now + dur);
+
+        // Lowpass cutoff filter at 900Hz for warm, tactile acoustic body
+        const filter = benchoAudioCtx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(900, now);
+
+        // Fast snappy attack (4ms) followed by natural exponential decay
+        const gainNode = benchoAudioCtx.createGain();
+        const atk = 0.004;
+        gainNode.gain.setValueAtTime(0.0001, now);
+        gainNode.gain.exponentialRampToValueAtTime(0.07, now + atk);
+        gainNode.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+
+        osc.connect(filter);
+        filter.connect(gainNode);
+        gainNode.connect(benchoAudioCtx.destination);
+
+        osc.start(now);
+        osc.stop(now + dur);
+      } catch (err) {
+        // Silent graceful fallback if audio context is blocked
+      }
+    }
+
+    // Attach click audio to all interactive UI surfaces
+    document.addEventListener('pointerdown', (e) => {
+      initBenchoAudio();
+      const target = e.target.closest('a, button, [role="button"], input, select');
+      if (target) {
+        playBenchoClick();
+      }
+    }, { passive: true });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+# Python helper scripts
+*.py
+__pycache__/
+
+# Deployment and environment
+.vercel/
+.env*
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+desktop.ini
