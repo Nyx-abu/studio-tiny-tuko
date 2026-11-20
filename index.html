@@ -37,6 +37,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Rubik:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,900&display=swap" rel="stylesheet">
 
+  <!-- PostHog Client Tracking & Analytics -->
+  <script src="posthog.js"></script>
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -488,11 +491,11 @@
     <!-- AUTHENTIC 1:1 WOVEN RIBBON DIVIDER -->
     <div class="woven-ribbon-band my-8"></div>
 
-    <!-- SKETCHBOOK AND VIS-DEV WALL (Pure Visual Archive, Zero Letterbox Bars) -->
+    <!-- SKETCHBOOK AND VIS-DEV WALL (Aspect-Ratio Preserving Bento Archive, Zero Cropping) -->
     <section id="sketchbook" class="py-16 md:py-24">
       <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
 
-        <div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <span class="font-mono text-xs uppercase tracking-widest text-tamarind font-bold block mb-1">
               ✦ Pre-Production Archive ✦
@@ -502,82 +505,125 @@
             </h2>
           </div>
           <p class="text-xs font-mono text-ink-faint max-w-md">
-            Hand-drawn concept keys, village environments by cloudyning and creature design studies by mikkusushi.
+            Hand-drawn concept keys and village environments by cloudyning alongside creature design studies by mikkusushi.
           </p>
         </div>
 
-        <!-- BENTO GRID VIS-DEV ARCHIVE (Asymmetric Layout, Zero Cards, Zero Fake Names) -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 auto-rows-[240px] sm:auto-rows-[280px] lg:auto-rows-[310px]">
+        <!-- DISCIPLINE FILTER TABS (Inspired by Camille Ongjoco's Department Navigation) -->
+        <div class="flex flex-wrap items-center gap-2 mb-10 border-b border-taupe-light pb-4">
+          <button 
+            type="button" 
+            data-sketchbook-filter="all" 
+            class="sketchbook-filter-btn px-4 py-1.5 text-xs font-mono uppercase tracking-wider font-bold transition-all bg-ink text-[#FCFCFC] border border-ink"
+          >
+            All Works
+          </button>
+          <button 
+            type="button" 
+            data-sketchbook-filter="cloudyning" 
+            class="sketchbook-filter-btn px-4 py-1.5 text-xs font-mono uppercase tracking-wider font-semibold transition-all bg-transparent text-ink-muted border border-taupe-light hover:text-ink hover:border-ink"
+          >
+            Visual Development &bull; cloudyning
+          </button>
+          <button 
+            type="button" 
+            data-sketchbook-filter="mikkusushi" 
+            class="sketchbook-filter-btn px-4 py-1.5 text-xs font-mono uppercase tracking-wider font-semibold transition-all bg-transparent text-ink-muted border border-taupe-light hover:text-ink hover:border-ink"
+          >
+            Creature Studies &bull; mikkusushi
+          </button>
+        </div>
+
+        <!-- UNCONSTRAINED ASPECT-RATIO BENTO GRID (Zero Cropping, Pure Proportions) -->
+        <div id="sketchbookGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           
-          <!-- Bento Tile 1: Primary Mountain Village (cloudyning) - Wide 2-Column Span -->
-          <div class="md:col-span-2 md:row-span-1 relative overflow-hidden bg-[#FAF6F0] group">
-            <img 
-              src="Assets/upscaled/cloudyning_primarylandscape_nobars.jpg?v=v5" 
-              alt="Environment Development by cloudyning" 
-              class="w-full h-full object-cover select-none"
-            >
-            <div class="absolute bottom-3 left-3 px-2.5 py-1 bg-[#FCFCFC]/90 backdrop-blur-sm text-[10px] font-mono text-ink uppercase tracking-wider font-semibold border border-taupe-light/60">
-              cloudyning
+          <!-- Tile 1: Primary Mountain Village (cloudyning) - 16:9 Cinematic Hero Span (8 Cols) -->
+          <div class="sketchbook-item lg:col-span-8 flex flex-col group" data-artist="cloudyning">
+            <div class="w-full bg-[#FAF6F0] border border-taupe-light/50 overflow-hidden">
+              <img 
+                src="Assets/upscaled/cloudyning_primarylandscape_nobars.jpg?v=v6" 
+                alt="Environment Visual Development by cloudyning" 
+                class="w-full h-auto block select-none transition-transform duration-500 group-hover:scale-[1.01]"
+              >
+            </div>
+            <div class="flex items-center justify-between pt-2.5 px-0.5">
+              <span class="font-mono text-xs text-ink uppercase tracking-wider font-bold">cloudyning</span>
+              <span class="font-mono text-[10px] text-ink-faint uppercase tracking-wider">Visual Development</span>
             </div>
           </div>
 
-          <!-- Bento Tile 2: Creature Exploration 2 (mikkusushi) - Tall 2-Row Span -->
-          <div class="md:col-span-1 md:row-span-2 relative overflow-hidden bg-[#FAF6F0] group">
-            <img 
-              src="Assets/upscaled/mikkusushi_work2.jpg?v=v5" 
-              alt="Creature Exploration by mikkusushi" 
-              class="w-full h-full object-cover select-none"
-            >
-            <div class="absolute bottom-3 left-3 px-2.5 py-1 bg-[#FCFCFC]/90 backdrop-blur-sm text-[10px] font-mono text-ink uppercase tracking-wider font-semibold border border-taupe-light/60">
-              mikkusushi
+          <!-- Tile 2: Creature Exploration 2 (mikkusushi) - 4:5 Vertical Portrait (4 Cols) -->
+          <div class="sketchbook-item lg:col-span-4 flex flex-col group" data-artist="mikkusushi">
+            <div class="w-full bg-[#FAF6F0] border border-taupe-light/50 overflow-hidden">
+              <img 
+                src="Assets/upscaled/mikkusushi_work2.jpg?v=v6" 
+                alt="Creature Exploration by mikkusushi" 
+                class="w-full h-auto block select-none transition-transform duration-500 group-hover:scale-[1.01]"
+              >
+            </div>
+            <div class="flex items-center justify-between pt-2.5 px-0.5">
+              <span class="font-mono text-xs text-ink uppercase tracking-wider font-bold">mikkusushi</span>
+              <span class="font-mono text-[10px] text-ink-faint uppercase tracking-wider">Creature Study</span>
             </div>
           </div>
 
-          <!-- Bento Tile 3: Creature Line Study (mikkusushi) - 1 Column -->
-          <div class="md:col-span-1 md:row-span-1 relative overflow-hidden bg-[#FAF6F0] group">
-            <img 
-              src="Assets/upscaled/mikkusushi_work_nobars.jpg?v=v5" 
-              alt="Creature Study by mikkusushi" 
-              class="w-full h-full object-cover select-none"
-            >
-            <div class="absolute bottom-3 left-3 px-2.5 py-1 bg-[#FCFCFC]/90 backdrop-blur-sm text-[10px] font-mono text-ink uppercase tracking-wider font-semibold border border-taupe-light/60">
-              mikkusushi
+          <!-- Tile 3: Forest Trail (cloudyning) - 16:9 Landscape (6 Cols) -->
+          <div class="sketchbook-item lg:col-span-6 flex flex-col group" data-artist="cloudyning">
+            <div class="w-full bg-[#FAF6F0] border border-taupe-light/50 overflow-hidden">
+              <img 
+                src="Assets/upscaled/cloudyning_landscape_nobars.jpg?v=v6" 
+                alt="Environment Visual Development by cloudyning" 
+                class="w-full h-auto block select-none transition-transform duration-500 group-hover:scale-[1.01]"
+              >
+            </div>
+            <div class="flex items-center justify-between pt-2.5 px-0.5">
+              <span class="font-mono text-xs text-ink uppercase tracking-wider font-bold">cloudyning</span>
+              <span class="font-mono text-[10px] text-ink-faint uppercase tracking-wider">Visual Development</span>
             </div>
           </div>
 
-          <!-- Bento Tile 4: Forest Trail (cloudyning) - 1 Column -->
-          <div class="md:col-span-1 md:row-span-1 relative overflow-hidden bg-[#FAF6F0] group">
-            <img 
-              src="Assets/upscaled/cloudyning_landscape_nobars.jpg?v=v5" 
-              alt="Environment Development by cloudyning" 
-              class="w-full h-full object-cover select-none"
-            >
-            <div class="absolute bottom-3 left-3 px-2.5 py-1 bg-[#FCFCFC]/90 backdrop-blur-sm text-[10px] font-mono text-ink uppercase tracking-wider font-semibold border border-taupe-light/60">
-              cloudyning
+          <!-- Tile 4: Village Road (cloudyning) - 16:9 Landscape (6 Cols) -->
+          <div class="sketchbook-item lg:col-span-6 flex flex-col group" data-artist="cloudyning">
+            <div class="w-full bg-[#FAF6F0] border border-taupe-light/50 overflow-hidden">
+              <img 
+                src="Assets/upscaled/cloudyning_landscape2_nobars.jpg?v=v6" 
+                alt="Environment Visual Development by cloudyning" 
+                class="w-full h-auto block select-none transition-transform duration-500 group-hover:scale-[1.01]"
+              >
+            </div>
+            <div class="flex items-center justify-between pt-2.5 px-0.5">
+              <span class="font-mono text-xs text-ink uppercase tracking-wider font-bold">cloudyning</span>
+              <span class="font-mono text-[10px] text-ink-faint uppercase tracking-wider">Visual Development</span>
             </div>
           </div>
 
-          <!-- Bento Tile 5: Village Road (cloudyning) - 1 Column -->
-          <div class="md:col-span-1 md:row-span-1 relative overflow-hidden bg-[#FAF6F0] group">
-            <img 
-              src="Assets/upscaled/cloudyning_landscape2_nobars.jpg?v=v5" 
-              alt="Environment Development by cloudyning" 
-              class="w-full h-full object-cover select-none"
-            >
-            <div class="absolute bottom-3 left-3 px-2.5 py-1 bg-[#FCFCFC]/90 backdrop-blur-sm text-[10px] font-mono text-ink uppercase tracking-wider font-semibold border border-taupe-light/60">
-              cloudyning
+          <!-- Tile 5: Creature Study 3 (mikkusushi) - Wide Beast Study (7 Cols) -->
+          <div class="sketchbook-item lg:col-span-7 flex flex-col group" data-artist="mikkusushi">
+            <div class="w-full bg-[#FAF6F0] border border-taupe-light/50 overflow-hidden">
+              <img 
+                src="Assets/upscaled/mikkusushi_work3_nobars.jpg?v=v6" 
+                alt="Creature Exploration by mikkusushi" 
+                class="w-full h-auto block select-none transition-transform duration-500 group-hover:scale-[1.01]"
+              >
+            </div>
+            <div class="flex items-center justify-between pt-2.5 px-0.5">
+              <span class="font-mono text-xs text-ink uppercase tracking-wider font-bold">mikkusushi</span>
+              <span class="font-mono text-[10px] text-ink-faint uppercase tracking-wider">Creature Study</span>
             </div>
           </div>
 
-          <!-- Bento Tile 6: Creature Study 3 (mikkusushi) - Wide 2-Column Span -->
-          <div class="md:col-span-2 md:row-span-1 relative overflow-hidden bg-[#FAF6F0] group">
-            <img 
-              src="Assets/upscaled/mikkusushi_work3_nobars.jpg?v=v5" 
-              alt="Creature Exploration by mikkusushi" 
-              class="w-full h-full object-cover select-none"
-            >
-            <div class="absolute bottom-3 left-3 px-2.5 py-1 bg-[#FCFCFC]/90 backdrop-blur-sm text-[10px] font-mono text-ink uppercase tracking-wider font-semibold border border-taupe-light/60">
-              mikkusushi
+          <!-- Tile 6: Creature Linework (mikkusushi) - Line Study (5 Cols) -->
+          <div class="sketchbook-item lg:col-span-5 flex flex-col group" data-artist="mikkusushi">
+            <div class="w-full bg-[#FAF6F0] border border-taupe-light/50 overflow-hidden">
+              <img 
+                src="Assets/upscaled/mikkusushi_work_nobars.jpg?v=v6" 
+                alt="Creature Line Study by mikkusushi" 
+                class="w-full h-auto block select-none transition-transform duration-500 group-hover:scale-[1.01]"
+              >
+            </div>
+            <div class="flex items-center justify-between pt-2.5 px-0.5">
+              <span class="font-mono text-xs text-ink uppercase tracking-wider font-bold">mikkusushi</span>
+              <span class="font-mono text-[10px] text-ink-faint uppercase tracking-wider">Creature Study</span>
             </div>
           </div>
 
@@ -770,6 +816,32 @@
         a.addEventListener('click', () => mobileMenu.classList.add('hidden'));
       });
     }
+
+    // 2. Sketchbook Department Filter (Inspired by Camille Ongjoco's Portfolio Navigation)
+    const sketchbookFilterBtns = document.querySelectorAll('.sketchbook-filter-btn');
+    const sketchbookItems = document.querySelectorAll('.sketchbook-item');
+
+    sketchbookFilterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-sketchbook-filter');
+
+        sketchbookFilterBtns.forEach(b => {
+          b.classList.remove('bg-ink', 'text-[#FCFCFC]', 'border-ink', 'font-bold');
+          b.classList.add('bg-transparent', 'text-ink-muted', 'border-taupe-light', 'font-semibold');
+        });
+        btn.classList.remove('bg-transparent', 'text-ink-muted', 'border-taupe-light', 'font-semibold');
+        btn.classList.add('bg-ink', 'text-[#FCFCFC]', 'border-ink', 'font-bold');
+
+        sketchbookItems.forEach(item => {
+          const artist = item.getAttribute('data-artist');
+          if (filter === 'all' || artist === filter) {
+            item.classList.remove('hidden');
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+      });
+    });
 
     // 2. High-Fidelity UI Synthesized Web Audio Click Engine
     // Multi-band acoustic resonance: crisp transient tick for phone/laptop micro-speakers + warm body for headphones
