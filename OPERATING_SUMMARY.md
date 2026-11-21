@@ -32,3 +32,14 @@
 ## Deployment & Repository
 - GitHub: https://github.com/Nyx-abu/studio-tiny-tuko
 - Vercel Production: https://studio-tiny-tuko.vercel.app
+
+
+## PostHog Analytics & Telemetry
+- **Project ID**: `756047`
+- **Project API Key**: `phc_vxUcxPg8Si3tXBMQMU6WFxD8fwhwTNvSJCWyRqzi7kgh`
+- **Host**: `https://us.i.posthog.com`
+- **Direct Dashboard Links**:
+  - Live Events: https://us.posthog.com/project/756047/events
+  - Session Replays: https://us.posthog.com/project/756047/replay
+  - Client Profiles: https://us.posthog.com/project/756047/persons
+  - Alert Settings: https://us.posthog.com/project/756047/alerts
