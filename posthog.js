@@ -29,6 +29,9 @@
         const urlParams = new URLSearchParams(window.location.search);
         const clientName = urlParams.get('client') || urlParams.get('c') || urlParams.get('ref');
 
+        // Explicitly capture standard $pageview for PostHog Web Analytics checklist
+        ph.capture('$pageview');
+
         if (clientName) {
           ph.identify(clientName, {
             client_name: clientName,
